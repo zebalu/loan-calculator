@@ -1,0 +1,30 @@
+name: Build GWT
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  gradlew-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Install Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      - name: Setup gradle
+        uses: gradle/actions/setup-gradle@v4
+      - run: |
+          chmod +x gradlew
+          ./gradlew build
+        name: run gradle build
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: |
+            build/gwt/war/
