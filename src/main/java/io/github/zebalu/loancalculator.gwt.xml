@@ -1,0 +1,6 @@
+<module rename-to="loancalculator">
+  <inherits name="com.google.gwt.user.User"/>
+  <inherits name="com.google.gwt.json.JSON"/>
+  <entry-point class="io.github.zebalu.loancalculator.LoanCalculatorEntryPoint"/>
+  <source path="loancalculator"/>
+</module>

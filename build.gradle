@@ -1,0 +1,37 @@
+plugins {
+  id 'java'
+  id "org.docstr.gwt" version "2.2.5"
+}
+
+repositories {
+    mavenCentral()
+}
+
+java.sourceCompatibility(JavaVersion.VERSION_17)
+
+gwt {
+  modules = ['io.github.zebalu.loancalculator']
+  
+  devMode {
+      port=8080
+      startupUrl='http://localhost:8080/index.html'
+  }
+
+    sourceLevel='17'
+  
+  // Optional: Add extra source directories for multi-module projects,
+  // generated sources, or annotation processor outputs
+  // extraSourceDirs = files("path/to/extra/sources")
+}
+
+dependencies {
+    implementation "org.gwtproject:gwt-user:2.12.1"
+}
+
+tasks.register('copyWebApp', Copy) {
+    from files('src/main/webapp/')
+    into 'build/gwt/war/'
+    dependsOn tasks.named('gwtCompile')
+}
+
+tasks.named('gwtCompile').get().configure  { finalizedBy(tasks.named('copyWebApp').get()) }
