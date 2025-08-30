@@ -190,9 +190,9 @@ public class LoanCalculatorEntryPoint implements EntryPoint {
         FlexTable flexTable = new FlexTable();
         flexTable.setText(0, 0, "Month");
         flexTable.setText(0, 1, "Loan left");
-        flexTable.setText(0, 2, "loan payed");
+        flexTable.setText(0, 2, "Loan payed in month");
         flexTable.setText(0, 3, "Interest left");
-        flexTable.setText(0, 4, "Interest payed");
+        flexTable.setText(0, 4, "Interest payed in month");
         for (int r = 0; r < monthList.size(); ++r) {
             flexTable.setText(r + 1, 0, Integer.toString(monthList.get(r).month()));
             flexTable.setText(r + 1, 1, formatNumber(monthList.get(r).loanLeft()));
